@@ -3,10 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
+        <title>String Extensions - Funcky User Guide</title>
         
-        
-        <base href="/">
         
 
 
@@ -97,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Result Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Functional Helpers</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">4.1.</strong> NoOperation</li><li class="chapter-item expanded "><strong aria-hidden="true">4.2.</strong> Identity</li><li class="chapter-item expanded "><strong aria-hidden="true">4.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">4.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">4.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">4.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">4.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">4.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">5.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">5.1.</strong> ForEach</li><li class="chapter-item expanded "><strong aria-hidden="true">5.2.</strong> Inspect</li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> None</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Chunk</li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html"><strong aria-hidden="true">6.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">7.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Result Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Functional Helpers</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">4.1.</strong> NoOperation</li><li class="chapter-item expanded "><strong aria-hidden="true">4.2.</strong> Identity</li><li class="chapter-item expanded "><strong aria-hidden="true">4.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">4.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">4.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">4.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">4.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">4.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">5.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">5.1.</strong> ForEach</li><li class="chapter-item expanded "><strong aria-hidden="true">5.2.</strong> Inspect</li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> None</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Chunk</li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html" class="active"><strong aria-hidden="true">6.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">7.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -167,15 +165,33 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#document-not-found-404" id="document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1><a class="header" href="#string-extensions" id="string-extensions">String Extensions</a></h1>
+<h2><a class="header" href="#indexof" id="indexof">IndexOf</a></h2>
+<p>The classical <code>IndexOf</code> methods provide a special form of error handling by returning <code>-1</code> when nothing is found.
+This is very cumbersome and a potential footgun, since you're not forced to check the return value.</p>
+<p>Funcky offers extension methods on <code>string</code> for each overload of <code>IndexOf</code>, <code>IndexOfAny</code>, <code>LastIndexOf</code>, and <code>LastIndexOfAny</code>.
+The extension methods follow the simple convention of being suffixed with <code>OrNone</code>.</p>
+<pre><code class="language-csharp">Option&lt;string&gt; ParseKey(string input)
+    =&gt; input.IndexOfOrNone('[')
+         .Select(startIndex =&gt; ParseKeyWithMultipleParts(input, startIndex))
+         .GetOrElse(() =&gt; ParseRegularKey(input));
+</code></pre>
+<p><em>Example usage of <code>IndexOfOrNone</code></em></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="try-pattern.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
+                        
+                            <a rel="next" href="changelog.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -185,7 +201,15 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a rel="prev" href="try-pattern.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
+                
+                    <a rel="next" href="changelog.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
