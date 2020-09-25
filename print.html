@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Result Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Functional Helpers</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">4.1.</strong> NoOperation</li><li class="chapter-item expanded "><strong aria-hidden="true">4.2.</strong> Identity</li><li class="chapter-item expanded "><strong aria-hidden="true">4.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">4.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">4.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">4.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">4.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">4.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">5.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">5.1.</strong> ForEach</li><li class="chapter-item expanded "><strong aria-hidden="true">5.2.</strong> Inspect</li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> None</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Chunk</li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html"><strong aria-hidden="true">6.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">7.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Case Studies</li><li><ol class="section"><li class="chapter-item expanded "><a href="case-studies/if-null-to-option.html"><strong aria-hidden="true">2.1.</strong> Simplify if null by using an Option</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Result Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">5.</strong> Functional Helpers</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">5.1.</strong> NoOperation</li><li class="chapter-item expanded "><strong aria-hidden="true">5.2.</strong> Identity</li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">5.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">5.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">5.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">6.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">6.1.</strong> ForEach</li><li class="chapter-item expanded "><strong aria-hidden="true">6.2.</strong> Inspect</li><li class="chapter-item expanded "><strong aria-hidden="true">6.3.</strong> None</li><li class="chapter-item expanded "><strong aria-hidden="true">6.4.</strong> Chunk</li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html"><strong aria-hidden="true">7.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">8.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -243,6 +243,69 @@ select Console.WriteLine($&quot;Value: {integer .Value}&quot;);
 <h2><a class="header" href="#the-parse-functions" id="the-parse-functions">The parse functions</a></h2>
 <pre><code class="language-cs">    Option&lt;int&gt; = &quot;1234&quot;.TryParseInt();
 
+</code></pre>
+<h1><a class="header" href="#simplify-if-null-by-using-an-option" id="simplify-if-null-by-using-an-option">Simplify <code>if null</code> by using an <code>Option</code></a></h1>
+<p>We start off with the following code:
+(Note that some types have been omitted for brevity)</p>
+<pre><code class="language-csharp">#nullable enable
+
+using System;
+
+public class Example
+{
+    public VersionEnvironment? GetCurrentVersionEnvironment(PackageName packageName)
+    {
+        var currentVersion = ReadCurrentVersion(packageName);
+
+        if (currentVersion is null)
+        {
+            return null;
+        }
+
+        var versionPath = GetVersionPath(packageName, currentVersion);
+        return new VersionEnvironment(currentVersion, versionPath);
+    }
+
+    public PackageVersion? ReadCurrentVersion(PackageName name) =&gt; null; // Real implementation omitted
+
+    public string GetVersionPath(PackageName name, PackageVersion version) =&gt; null!; // Real implementation omitted
+}
+</code></pre>
+<p>The function <code>GetCurrentVersionEnvironment</code> doesn't do much, but it's not pleasant to look at,
+because of that early return condition.</p>
+<h2><a class="header" href="#step-Ⅰ" id="step-Ⅰ">Step Ⅰ</a></h2>
+<p>We start off by changing the return type of <code>ReadCurrentVersion</code> from <code>PackageVersion?</code> to an <code>Option</code>:</p>
+<pre><code class="language-csharp">public Option&lt;PackageVersion&gt; ReadCurrentVersion(PackageName name) =&gt; Option.None&lt;PackageVersion&gt;(); // Real implementation omitted
+</code></pre>
+<h2><a class="header" href="#step-Ⅱ" id="step-Ⅱ">Step Ⅱ</a></h2>
+<p>This immediately breaks the <code>GetCurrentVersionEnvironment</code>, because our <code>null</code> check no longer makes sense.
+Instead of checking for <code>null</code> and returning early, we can use <code>Select</code> on the <code>Option</code> to project its value.</p>
+<pre><code class="language-csharp">public Option&lt;VersionEnvironment&gt; GetCurrentVersionEnvironment(PackageName packageName)
+{
+    return ReadCurrentVersion(packageName)
+        .Select(currentVersion =&gt; {
+            var versionPath = GetVersionPath(packageName, currentVersion);
+            return new VersionEnvironment(currentVersion, versionPath);
+        });
+}
+</code></pre>
+<h2><a class="header" href="#step-Ⅲ" id="step-Ⅲ">Step Ⅲ</a></h2>
+<p>This is already much simpler, since we've got rid of that explicit null check.</p>
+<p>There's still room for simplification, since our projection takes up two lines and we ideally only want a single expression in our projection.</p>
+<p>We can achieve this by translating our expression to query syntax:</p>
+<pre><code class="language-csharp">public Option&lt;VersionEnvironment&gt; GetCurrentVersionEnvironment(PackageName packageName)
+{
+    return from currentVersion in ReadCurrentVersion(packageName)
+           let versionPath = GetVersionPath(packageName, currentVersion)
+           select new VersionEnvironment(currentVersion, versionPath);
+}
+</code></pre>
+<h2><a class="header" href="#step-Ⅳ" id="step-Ⅳ">Step Ⅳ</a></h2>
+<p>Since our method now consists of only one expression, we can make it an expression body:</p>
+<pre><code class="language-csharp">public Option&lt;VersionEnvironment&gt; GetCurrentVersionEnvironment(PackageName packageName)
+    =&gt; return from currentVersion in ReadCurrentVersion(packageName)
+              let versionPath = GetVersionPath(packageName, currentVersion)
+              select new VersionEnvironment(currentVersion, versionPath);
 </code></pre>
 <h1><a class="header" href="#string-extensions" id="string-extensions">String Extensions</a></h1>
 <h2><a class="header" href="#indexof" id="indexof">IndexOf</a></h2>
