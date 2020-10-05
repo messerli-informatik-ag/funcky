@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Case Studies</li><li><ol class="section"><li class="chapter-item expanded "><a href="case-studies/if-null-to-option.html"><strong aria-hidden="true">2.1.</strong> Simplify if null by using an Option</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Result Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">5.</strong> Functional Helpers</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">5.1.</strong> NoOperation</li><li class="chapter-item expanded "><strong aria-hidden="true">5.2.</strong> Identity</li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">5.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">5.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">5.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">6.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">6.1.</strong> ForEach</li><li class="chapter-item expanded "><strong aria-hidden="true">6.2.</strong> Inspect</li><li class="chapter-item expanded "><a href="none.html"><strong aria-hidden="true">6.3.</strong> None</a></li><li class="chapter-item expanded "><strong aria-hidden="true">6.4.</strong> Chunk</li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html"><strong aria-hidden="true">7.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">8.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Case Studies</li><li><ol class="section"><li class="chapter-item expanded "><a href="case-studies/if-null-to-option.html"><strong aria-hidden="true">2.1.</strong> Simplify if null by using an Option</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Result Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">5.</strong> Functional Helpers</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">5.1.</strong> NoOperation</li><li class="chapter-item expanded "><strong aria-hidden="true">5.2.</strong> Identity</li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">5.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">5.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">5.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">6.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><a href="for-each.html"><strong aria-hidden="true">6.1.</strong> ForEach</a></li><li class="chapter-item expanded "><a href="inspect.html"><strong aria-hidden="true">6.2.</strong> Inspect</a></li><li class="chapter-item expanded "><a href="none.html"><strong aria-hidden="true">6.3.</strong> None</a></li><li class="chapter-item expanded "><a href="chunk.html"><strong aria-hidden="true">6.4.</strong> Chunk</a></li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html"><strong aria-hidden="true">7.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">8.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -307,6 +307,73 @@ Instead of checking for <code>null</code> and returning early, we can use <code>
               let versionPath = GetVersionPath(packageName, currentVersion)
               select new VersionEnvironment(currentVersion, versionPath);
 </code></pre>
+<h1><a class="header" href="#ienumerable-extension-method-foreach" id="ienumerable-extension-method-foreach"><code>IEnumerable</code> extension method <code>.ForEach</code></a></h1>
+<p>With the <code>.ForEach</code> extension method, you can invoke an action for each item in an enumerable, just like a <code>foreach</code> statement would allow you to do.</p>
+<p>This method is already available in .NET, but just on <code>List</code>s, and it makes sense for it to be available on every enumerable.</p>
+<p>Keep in mind that <code>.ForEach</code> is imperative and only expects an <code>Action&lt;T&gt;</code>. It should not be used to change state of anything outside of the <code>.ForEach</code>.
+If you want to combine the enumerable into a result, consider using <code>.Aggregate()</code>, as that is designed for such use-cases.</p>
+<p>Example:</p>
+<pre><code class="language-csharp">// Original
+foreach (var item in Items)
+{
+   DoSomething(item);
+}
+
+// Using `.ForEach`
+Items.ForEach(DoSomething); // equivalent to Items.ForEach(item =&gt; DoSomething(item));
+</code></pre>
+<h1><a class="header" href="#ienumerable-extension-method-inspect" id="ienumerable-extension-method-inspect"><code>IEnumerable</code> extension method <code>.Inspect</code></a></h1>
+<p>With the <code>.Inspect</code> extension method, you can invoke an action for each item in an enumerable, 
+just like <code>.ForEach</code> or the <code>foreach</code> statement would allow you to do, but the method yields the initial enumerable back.</p>
+<p>This can be useful when you want to apply a side-effect to a list before returning, or continue selecting on a list after applying a side-effect.
+<code>Inspect</code> can be especially useful when you want to log step(s) of a complex query, since you don't have to change the structure of the code to use it.</p>
+<p>Example 1:</p>
+<pre><code class="language-csharp">// Original using .ForEach
+var items = someList.Select(TransformSomething);
+Items.ForEach(DoSomething);
+return items;
+
+// Using `.Inspect`
+return someList.Select(TransformSomething).Inspect(DoSomething);
+</code></pre>
+<p>Example 2:</p>
+<pre><code class="language-csharp">// Original using foreach
+var items = someList.Select(TransformToSomething);
+foreach (var item in items) 
+{
+  DoSomething(item);
+}
+var transformedItems = items.Select(TransformToSomethingElse);
+
+// Using `.Inspect`
+var transformedItems = someList
+  .Select(TransformSomething)
+  .Inspect(DoSomething)
+  .Select(TransformToSomethingElse);
+</code></pre>
+<h2><a class="header" href="#deferred-execution" id="deferred-execution">Deferred Execution</a></h2>
+<p>It is important to understand at which moment <code>.Inspect</code> is executed. The exact moment of execution is the same as if it were a <code>Select</code>, <code>Where</code> or any other deferred LINQ-method.
+See <a href="https://docs.microsoft.com/en-us/dotnet/standard/linq/deferred-execution-lazy-evaluation">Microsoft Docs</a> for more information about deferred execution in LINQ.
+This is also an important difference between <code>.ForEach</code> (eager) and <code>.Inspect</code> (deferred).</p>
+<p>Consider the following example:</p>
+<pre><code class="language-csharp">Enumerable.Range(1, 100)
+  .Inspect(n =&gt; Console.WriteLine($&quot;before where: {n}&quot;))
+  .Where(n =&gt; n % 2 == 0)
+  .Inspect(n =&gt; Console.WriteLine($&quot;after where: {n}&quot;))
+  .Inspect(Console.WriteLine)
+  .Take(2)
+  .ToImmutableList(); // &lt;- Side effects of .Inspect happen here
+  
+// Prints:
+// before where: 1
+// before where: 2
+// after where: 2
+// 2
+// before where: 3
+// before where: 4
+// after where: 4
+// 4
+</code></pre>
 <h1><a class="header" href="#ienumerable-extension-method-none" id="ienumerable-extension-method-none"><code>IEnumerable</code> extension method <code>.None</code></a></h1>
 <p>With the <code>.None</code> extension method, you can make <code>!enumerable.Any()</code> calls easier.</p>
 <p>That's all there is. You can replace:</p>
@@ -317,6 +384,29 @@ Instead of checking for <code>null</code> and returning early, we can use <code>
 </code></pre>
 <p>Just like with <code>.Any()</code>, you can additionally pass a predicate as a parameter:</p>
 <pre><code class="language-csharp">if (enumerable.None(item =&gt; item.SomeNumericProperty == 2) { ... }
+</code></pre>
+<h1><a class="header" href="#ienumerable-extension-method-chunk" id="ienumerable-extension-method-chunk"><code>IEnumerable</code> extension method <code>.Chunk</code></a></h1>
+<p>With the <code>.Chunk(int)</code> extension method, you can turn an <code>IEnumerable&lt;T&gt;</code> into a <code>IEnumerable&lt;IEnumerable&lt;T&gt;&gt;</code>, with the inner Enumerables being of the given size.
+Empty and negative chunk sizes are not allowed and will throw a <code>ArgumentOutOfRangeException</code>.</p>
+<p>Examples:</p>
+<pre><code class="language-csharp">var numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+var chunked = numbers.Chunk(3);
+// Result: IEnumerable with Chunks of size 3:
+// 1st Chunk: 1, 2, 3
+// 2nd Chunk: 4, 5, 6
+// 3rd Chunk: 7, 8, 9
+</code></pre>
+<p>When the last chunk isn't complete, we get a smaller, incomplete last chunk:</p>
+<pre><code class="language-csharp">var numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7 };
+var chunked = numbers.Chunk(4);
+// Result: IEnumerable with Chunks of size 4:
+// 1st Chunk: 1, 2, 3, 4
+// 2nd Chunk: 5, 6, 7
+</code></pre>
+<p>If required, you can also pass a result selector, that turns the inner IEnumerables into a different type:</p>
+<pre><code class="language-csharp">var magicSquare = new List&lt;int&gt; { 4, 9, 2, 3, 5, 7, 8, 1, 6 };
+var result = magicSquare.Chunk(3, Enumerable.Average); // equivalent to magicSquare.Chunk(3, number =&gt; Enumerable.Average(number));
+// Result: IEnumerable&lt;int&gt; with 5, 5, 5 as items
 </code></pre>
 <h1><a class="header" href="#string-extensions" id="string-extensions">String Extensions</a></h1>
 <h2><a class="header" href="#indexof" id="indexof">IndexOf</a></h2>
