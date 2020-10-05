@@ -429,24 +429,71 @@ result was an error. As a result (pun intended) of the fix, <code>ResultCombinat
 <li>Added <code>None</code> overload that takes no predicate.</li>
 </ul>
 <h2><a class="header" href="#unreleased" id="unreleased">Unreleased</a></h2>
+<h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
 <ul>
-<li>Funcky now uses <code>.ConfigureAwait(false)</code> everywhere <code>await</code> is used.</li>
-<li>Add <code>WhereSelect</code>, <code>FirstOrNoneAsync</code>, <code>LastOrNoneAsync</code> and <code>SingleOrNoneAsync</code> extension methods for <code>IAsyncEnumerable</code>.</li>
-<li>Extension function Chunk added</li>
-<li>Depend on <code>System.Collections.Immutable</code></li>
-<li>Add <code>Chunk</code>, <code>Interleave</code> extension methods for <code>IEnumerable</code>.</li>
-<li>Add <code>CartesianProduct</code> extension method for <code>IEnumerable</code>.</li>
-<li>Add <code>ElementAtOrNone</code> extension methods for <code>IEnumerable</code>.</li>
-<li>Add extension function <code>Pairwise</code> for <code>IEnumerable</code>.</li>
-<li>Add extension function <code>TakeEvery</code></li>
-<li>Extension function <code>Merge</code> added</li>
-<li>Add custom <code>JsonConverter</code> for <code>Option</code>.</li>
-<li>Add custom <code>JsonConverter</code> for <code>Option</code>.</li>
-<li>Add <code>Transpose</code> extension methods for <code>IEnumerable</code>.
-When using <code>System.Text.Json</code> to serialize/deserialize this converter is picked up automatically.
-<code>None</code> is serialized as <code>null</code> and <code>Some(value)</code> is serialized to whatever <code>value</code> serializes to.</li>
-<li>Extension function <code>SlidingWindow</code> added.</li>
-<li>Add <code>Partition</code> extension method for <code>IEnumerable</code>.</li>
+<li><code>ObjectExtensions.ToEnumerable</code> has been deprecated in favor of <code>Sequence.FromNullable</code>.</li>
+</ul>
+<h3><a class="header" href="#factory-methods-for-ienumerablet" id="factory-methods-for-ienumerablet">Factory methods for <code>IEnumerable&lt;T&gt;</code></a></h3>
+<p>This release adds factory methods for creating <code>IEnumerable&lt;T&gt;</code>
+with the static class <code>Sequence</code>:</p>
+<ul>
+<li><code>Sequence.Return</code>: Creates an <code>IEnumerable&lt;T&gt;</code> with exactly one item.</li>
+<li><code>Sequence.FromNullable</code>: Creates an <code>IEnumerable&lt;T&gt;</code> with zero or one item.</li>
+</ul>
+<h3><a class="header" href="#more-extension-methods-for-ienumerablet" id="more-extension-methods-for-ienumerablet">More Extension Methods for <code>IEnumerable&lt;T&gt;</code></a></h3>
+<p>This release adds a bunch of new extension methods on <code>IEnumerable&lt;T&gt;</code>:</p>
+<ul>
+<li><code>CartesianProduct</code></li>
+<li><code>Chunk</code></li>
+<li><code>ElementAtOrNone</code></li>
+<li><code>Interleave</code></li>
+<li><code>Merge</code></li>
+<li><code>Pairwise</code></li>
+<li><code>Partition</code></li>
+<li><code>SlidingWindow</code></li>
+<li><code>TakeEvery</code></li>
+<li><code>Transpose</code></li>
+</ul>
+<h3><a class="header" href="#iasyncenumerablet-support" id="iasyncenumerablet-support"><code>IAsyncEnumerable&lt;T&gt;</code> Support</a></h3>
+<p>This release adds a couple of extension methods that provide interoperability
+with <code>Option&lt;T&gt;</code> to <code>IAsyncEnumerable&lt;T&gt;</code>:</p>
+<ul>
+<li><code>WhereSelect</code></li>
+<li><code>FirstOrNoneAsync</code></li>
+<li><code>LastOrNoneAsync</code></li>
+<li><code>SingleOrNoneAsync</code></li>
+<li><code>ElementAtOrNone</code></li>
+</ul>
+<p>A couple of the new extension methods on <code>IEnumerable&lt;T&gt;</code> have async counterparts:</p>
+<ul>
+<li><code>Pairwise</code></li>
+<li><code>TakeEvery</code></li>
+</ul>
+<p>The naming of the extension methods and their overloads follows that of <a href="https://github.com/dotnet/reactive/tree/main/Ix.NET/Source/System.Linq.Async"><code>System.Linq.Async</code></a>.</p>
+<h3><a class="header" href="#improved-iqueryable-support" id="improved-iqueryable-support">Improved <code>IQueryable</code> Support</a></h3>
+<p>This release adds specialized extension methods for <code>IQueryable&lt;T&gt;</code> that are better
+suited especially for use with EF Core:</p>
+<ul>
+<li><code>FirstOrNone</code></li>
+<li><code>LastOrNone</code></li>
+<li><code>SingleOrNone</code></li>
+</ul>
+<h3><a class="header" href="#serialization" id="serialization">Serialization</a></h3>
+<p><code>Option</code> adds support for <code>System.Text.Json</code>:<br />
+The custom <code>JsonConverter</code> is picked up automatically when serializing/deserializing.
+<code>None</code> is serialized as <code>null</code> and <code>Some(value)</code> is serialized to whatever <code>value</code> serializes to.</p>
+<h3><a class="header" href="#dependencies" id="dependencies">Dependencies</a></h3>
+<p>To support .NET Standard, Funcky conditionally pulls in dependencies
+that provide the missing functionality:</p>
+<ul>
+<li><code>Microsoft.Bcl.AsyncInterfaces</code> for .NET Standard 2.0</li>
+<li><code>System.Collections.Immutable</code> and <code>System.Text.Json</code> for .NET Standard 2.0 and 2.1</li>
+</ul>
+<h3><a class="header" href="#improvements-1" id="improvements-1">Improvements</a></h3>
+<ul>
+<li><code>ConfigureAwait(false)</code> is now used everywhere <code>await</code> is used.</li>
+<li>The <code>IRetryPolicy</code> implementations now use correct <code>Timespan</code> with <code>double</code> multiplication
+when targeting .NET Standard 2.0.</li>
 </ul>
 
                     </main>
