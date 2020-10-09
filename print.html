@@ -233,7 +233,6 @@ select Console.WriteLine($&quot;Value: {integer .Value}&quot;);
 	{
 	    // ...
 	}
-
 </code></pre>
 <p>Out parameters are bad, and in consequence we think the TryVerb-pattern (<code>TryGet</code>, <code>TryParse</code>...) used in C# as an anti-pattern.</p>
 <p>We have added an overload for each and every &quot;Try&quot; function we have found in the .NET Framework.</p>
@@ -242,7 +241,6 @@ select Console.WriteLine($&quot;Value: {integer .Value}&quot;);
 <h2><a class="header" href="#trygetvalues" id="trygetvalues">TryGetValues</a></h2>
 <h2><a class="header" href="#the-parse-functions" id="the-parse-functions">The parse functions</a></h2>
 <pre><code class="language-cs">    Option&lt;int&gt; = &quot;1234&quot;.TryParseInt();
-
 </code></pre>
 <h1><a class="header" href="#simplify-if-null-by-using-an-option" id="simplify-if-null-by-using-an-option">Simplify <code>if null</code> by using an <code>Option</code></a></h1>
 <p>We start off with the following code:
