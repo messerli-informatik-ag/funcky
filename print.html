@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Case Studies</li><li><ol class="section"><li class="chapter-item expanded "><a href="case-studies/if-null-to-option.html"><strong aria-hidden="true">2.1.</strong> Simplify if null by using an Option</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Result Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">5.</strong> Functional Helpers</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">5.1.</strong> NoOperation</li><li class="chapter-item expanded "><strong aria-hidden="true">5.2.</strong> Identity</li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">5.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">5.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">5.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">6.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><a href="enumerable-extensions/for-each.html"><strong aria-hidden="true">6.1.</strong> ForEach</a></li><li class="chapter-item expanded "><a href="enumerable-extensions/inspect.html"><strong aria-hidden="true">6.2.</strong> Inspect</a></li><li class="chapter-item expanded "><a href="enumerable-extensions/none.html"><strong aria-hidden="true">6.3.</strong> None</a></li><li class="chapter-item expanded "><a href="enumerable-extensions/chunk.html"><strong aria-hidden="true">6.4.</strong> Chunk</a></li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html"><strong aria-hidden="true">7.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">8.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Case Studies</li><li><ol class="section"><li class="chapter-item expanded "><a href="case-studies/if-null-to-option.html"><strong aria-hidden="true">2.1.</strong> Simplify if null by using an Option</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Result Monad</li><li class="chapter-item expanded "><a href="functional-helpers/functional-helpers.html"><strong aria-hidden="true">5.</strong> Functional Helpers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="functional-helpers/no-operation.html"><strong aria-hidden="true">5.1.</strong> NoOperation</a></li><li class="chapter-item expanded "><a href="functional-helpers/identity.html"><strong aria-hidden="true">5.2.</strong> Identity</a></li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">5.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><strong aria-hidden="true">5.7.</strong> Unit Type</li><li class="chapter-item expanded "><strong aria-hidden="true">5.8.</strong> ActionToUnit</li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">6.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><a href="enumerable-extensions/for-each.html"><strong aria-hidden="true">6.1.</strong> ForEach</a></li><li class="chapter-item expanded "><a href="enumerable-extensions/inspect.html"><strong aria-hidden="true">6.2.</strong> Inspect</a></li><li class="chapter-item expanded "><a href="enumerable-extensions/none.html"><strong aria-hidden="true">6.3.</strong> None</a></li><li class="chapter-item expanded "><a href="enumerable-extensions/chunk.html"><strong aria-hidden="true">6.4.</strong> Chunk</a></li></ol></li><li class="chapter-item expanded "><a href="string-extensions.html"><strong aria-hidden="true">7.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">8.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="changelog.html">Changelog</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -306,6 +306,91 @@ Instead of checking for <code>null</code> and returning early, we can use <code>
     =&gt; return from currentVersion in ReadCurrentVersion(packageName)
               let versionPath = GetVersionPath(packageName, currentVersion)
               select new VersionEnvironment(currentVersion, versionPath);
+</code></pre>
+<p>The static class <code>Funcky.Functional</code> is designed to be used with a static import (<code>using static Funcky.Functional;</code>). All examples will be as if <code>using static</code> was used.
+All the methods in <code>Funcky.Functional</code> are named to be easily understood without the functional prefix. They are general purpose, and their goal is to unify typical boilerplate code or be more expressive than typical C# ways of doing their job.</p>
+<p>The <code>NoOperation</code> function is a more expressive way of manually creating an empty statement as a parameter to a method expecting a <code>Action</code>/<code>Action&lt;T&gt;</code>, supporting from 0 up to 8 generic parameters.</p>
+<p>Example 1:</p>
+<pre><code class="language-csharp">// The function we want to call:
+public void DoSomething(int value, Action&lt;int&gt; callback)
+{
+  // ...
+}
+
+// How we would usually call it when we don't need the callback:
+DoSomething(2, _ =&gt; {});
+
+// How you can call it with NoOperation:
+DoSomething(2, NoOperation);
+</code></pre>
+<p><code>NoOperation</code> becomes especially useful when a <code>Action&lt;T&gt;</code> with many parameters is expected.</p>
+<p>Example 2:</p>
+<pre><code class="language-csharp">// The function we want to call:
+public void DoSomething(int value, Action&lt;int, string, float, AnyCustomClassThatYouWant&gt; callback)
+{
+  // ...
+}
+
+// How we would usually call it when we don't need the callback (C#9):
+DoSomething(2, (_, _, _, _) =&gt; {});
+// Before C#9, this was even worse:
+DoSomething(3, (_, __, ___, ____) =&gt; {});
+
+// How you can call it with NoOperation:
+DoSomething(2, NoOperation);
+</code></pre>
+<p><code>NoOperation</code> is also useful when you want to use a expression body for a method.</p>
+<p>Example 3:</p>
+<pre><code class="language-csharp">// Abstract class:
+public abstract class SomeClassWithExecuteAndHookBase
+{
+  public void Execute();
+  
+  protected abstract void PostExecutionHook();
+}
+
+// Derived class that doesn't have any use for the PostExecutionHook usually:
+public class SomeClassWithExecuteAndHookDerived : SomeClassWithExecuteAndHookBase
+{
+  protected override void PostExecutionHook()
+  {
+  }
+}
+
+// Derived class that doesn't have any use for the PostExecutionHook with NoOperation:
+public class SomeClassWithExecuteAndHookDerived : SomeClassWithExecuteAndHookBase
+{
+  protected override void PostExecutionHook() =&gt; NoOperation();
+}
+</code></pre>
+<p>The <code>Identity</code> function is designed to replace parameter-returning lambdas, like sometimes used in LINQ.</p>
+<p>Example 1:</p>
+<pre><code class="language-csharp">// Method:
+public void FunctionExpectingSelector&lt;TIn, TOut&gt;(Func&lt;TIn, TOut&gt; selector)
+{
+  // ...
+}
+
+// Usually:
+FunctionExpectingSelector(x =&gt; x);
+// Or:
+FunctionExpectingSelector(item =&gt; item);
+
+// With Identity:
+FunctionExpectingSelector(Identity);
+</code></pre>
+<p>Example 2 (typical <code>SelectMany</code> selector):</p>
+<pre><code class="language-csharp">// Usually result of a query:
+IEnumerable&lt;IEnumerable&lt;int&gt;&gt; itemGroups = new[] { new[] { 1, 2, 3 }, new[] { 5, 6, 7 } };
+
+// Goal: Get all items flattened.
+// Common approach:
+itemGroups.SelectMany(x =&gt; x);
+// Or:
+itemGroups.SelectMany(items =&gt; items);
+
+// With Identity:
+itemGroups.SelectMany(Identity);
 </code></pre>
 <h1><a class="header" href="#ienumerable-extension-method-foreach" id="ienumerable-extension-method-foreach"><code>IEnumerable</code> extension method <code>.ForEach</code></a></h1>
 <p>With the <code>.ForEach</code> extension method, you can invoke an action for each item in an enumerable, just like a <code>foreach</code> statement would allow you to do.</p>
