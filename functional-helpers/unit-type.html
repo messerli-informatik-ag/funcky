@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Unit Type - Funcky User Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="../custom.css">
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../option.html"><strong aria-hidden="true">1.</strong> Option Monad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../try-pattern.html"><strong aria-hidden="true">1.1.</strong> The TryVerb-pattern</a></li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.</strong> The Linq-Extensions</li><li><ol class="section"><li class="chapter-item expanded "><strong aria-hidden="true">1.2.1.</strong> FirstOrNone, LastOrNone, SingleOrNone</li><li class="chapter-item expanded "><strong aria-hidden="true">1.2.2.</strong> WhereSelect</li></ol></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">2.</strong> Case Studies</li><li><ol class="section"><li class="chapter-item expanded "><a href="../case-studies/if-null-to-option.html"><strong aria-hidden="true">2.1.</strong> Simplify if null by using an Option</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">3.</strong> Either Monad</li><li class="chapter-item expanded "><strong aria-hidden="true">4.</strong> Result Monad</li><li class="chapter-item expanded "><a href="../functional-helpers/functional-helpers.html"><strong aria-hidden="true">5.</strong> Functional Helpers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functional-helpers/no-operation.html"><strong aria-hidden="true">5.1.</strong> NoOperation</a></li><li class="chapter-item expanded "><a href="../functional-helpers/identity.html"><strong aria-hidden="true">5.2.</strong> Identity</a></li><li class="chapter-item expanded "><strong aria-hidden="true">5.3.</strong> Curry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.4.</strong> Flip</li><li class="chapter-item expanded "><strong aria-hidden="true">5.5.</strong> Retry</li><li class="chapter-item expanded "><strong aria-hidden="true">5.6.</strong> Predicate Composition</li><li class="chapter-item expanded "><a href="../functional-helpers/unit-type.html" class="active"><strong aria-hidden="true">5.7.</strong> Unit Type</a></li><li class="chapter-item expanded "><a href="../functional-helpers/action-to-unit.html"><strong aria-hidden="true">5.8.</strong> ActionToUnit</a></li></ol></li><li class="chapter-item expanded "><strong aria-hidden="true">6.</strong> IEnumerable Extensions</li><li><ol class="section"><li class="chapter-item expanded "><a href="../enumerable-extensions/for-each.html"><strong aria-hidden="true">6.1.</strong> ForEach</a></li><li class="chapter-item expanded "><a href="../enumerable-extensions/inspect.html"><strong aria-hidden="true">6.2.</strong> Inspect</a></li><li class="chapter-item expanded "><a href="../enumerable-extensions/none.html"><strong aria-hidden="true">6.3.</strong> None</a></li><li class="chapter-item expanded "><a href="../enumerable-extensions/chunk.html"><strong aria-hidden="true">6.4.</strong> Chunk</a></li></ol></li><li class="chapter-item expanded "><a href="../string-extensions.html"><strong aria-hidden="true">7.</strong> String Extensions</a></li><li class="chapter-item expanded "><strong aria-hidden="true">8.</strong> Stream Extensions</li><li class="chapter-item expanded affix "><a href="../changelog.html">Changelog</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Funcky User Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/polyadic/funcky" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>The unit type is an alternative to the native C# struct <code>Void</code> (with the global alias <code>void</code>).</p>
+<p>The C# compiler handles <code>Void</code>/<code>void</code> very different to all other types in C#:</p>
+<ul>
+<li><code>Void</code> can never be used. You must always use <code>void</code></li>
+<li><code>void</code> can not be instantiated</li>
+<li><code>void</code> can not be used as a generic argument to any function</li>
+<li>A function (sometimes also called method) &quot;returning&quot; <code>void</code> does not return a value, and the result of the function (<code>void</code>) can not be assigned to any variable</li>
+<li>When using reflection, void-methods will return <code>null</code> because the compiler can not know during compile-time what the dynamically dispatched method will return</li>
+</ul>
+<p>These limitations on the void type introduce annoying behaviour, especially with expressions and generics.</p>
+<h2><a class="header" href="#example-1---the-void-is-not-a-real-type-dilemma" id="example-1---the-void-is-not-a-real-type-dilemma">Example 1 - the &quot;void is not a real type&quot; dilemma:</a></h2>
+<p>This examples uses a simple algebraic datatype with a generic match method:</p>
+<pre><code class="language-csharp">public abstract class SimpleAlgebraicDatatype
+{
+	private SimpleAlgebraicDatatype()
+	{
+	}
+
+	public abstract TResult Match&lt;TResult&gt;(
+		Func&lt;Variant1, TResult&gt; variant1,
+		Func&lt;Variant2, TResult&gt; variant2);
+
+	public class Variant1 : SimpleAlgebraicDatatype
+	{
+		public Variant1(string someValue)
+		{
+			SomeValue = someValue;
+		}
+		
+		public string SomeValue { get; }
+
+		public override TResult Match&lt;TResult&gt;(
+			Func&lt;Variant1, TResult&gt; variant1, 
+			Func&lt;Variant2, TResult&gt; variant2)
+			=&gt; variant1(this);
+	}
+
+	public class Variant2 : SimpleAlgebraicDatatype
+	{
+		public Variant2(int someValue)
+		{
+			SomeValue = someValue;
+		}
+		
+		public int SomeValue { get; }
+
+		public override TResult Match&lt;TResult&gt;(
+			Func&lt;Variant1, TResult&gt; variant1, 
+			Func&lt;Variant2, TResult&gt; variant2)
+			=&gt; variant2(this);
+	}
+}
+</code></pre>
+<p>It then can be used like that:</p>
+<pre><code class="language-csharp">SimpleAlgebraicDatatype variant = new SimpleAlgebraicDatatype.Variant1(&quot;Hey&quot;);
+// get the variant as string
+var value = variant.Match(
+	variant1: variant1 =&gt; variant1.SomeValue,
+	variant2: variant2 =&gt; Convert.ToString(variant2.SomeValue));
+Console.WriteLine(value);
+</code></pre>
+<p>But if you don't want to use the return value, you're stuck with returning a value you don't want.
+This does <strong>not</strong> compile:</p>
+<pre><code class="language-csharp">// Error [CS0411] The type arguments for method 'method' cannot be inferred from the usage. Try specifying the type arguments explicitly.
+variant.Match(
+	variant1: variant1 =&gt; Console.Write(variant1.SomeValue),
+	variant2: variant2 =&gt; Console.Write(Convert.ToString(variant2.SomeValue)));
+</code></pre>
+<p>Now you have to decide what it returns. One option is to return null - the best fitting return type is probably <code>object?</code> in that case:</p>
+<pre><code class="language-csharp">variant.Match&lt;object?&gt;(
+	variant1: variant1 =&gt;
+	{
+		Console.Write(variant1.SomeValue);
+		return null;
+	},
+	variant2: variant2 =&gt;
+	{
+		Console.Write(Convert.ToString(variant2.SomeValue));
+		return null;
+	});
+</code></pre>
+<p>This is very unstatisfying however. We have to trick the type-system. There should be a more expressive way.</p>
+<p>Funcky.Unit to the rescue:</p>
+<pre><code class="language-csharp">variant.Match(
+	variant1: variant1 =&gt;
+	{
+		Console.Write(variant1.SomeValue);
+		return Unit.Value;
+	},
+	variant2: variant2 =&gt;
+	{
+		Console.Write(Convert.ToString(variant2.SomeValue));
+		return Unit.Value;
+	});
+</code></pre>
+<p>Now this isn't really less noise. This is why we created <a href="./action-to-unit.html">ActionToUnit</a>.</p>
+<p>This clears up the code to:</p>
+<pre><code class="language-csharp">variant.Match(
+	variant1: variant1 =&gt; ActionToUnit(() =&gt; Console.Write(variant1.SomeValue)),
+	variant2: variant2 =&gt; ActionToUnit(() =&gt; Console.Write(Convert.ToString(variant2.SomeValue))));
+</code></pre>
+<p>See <a href="./action-to-unit.html">ActionToUnit</a> for an explanation.</p>
+<h2><a class="header" href="#example-2---the-switch-expression-must-return-something-dilemma" id="example-2---the-switch-expression-must-return-something-dilemma">Example 2 - the &quot;switch expression must return something&quot; dilemma:</a></h2>
+<p>The following two code snippes do <strong>not</strong> comple:</p>
+<pre><code class="language-csharp">// Error [CS0201]: Only assignment, call, increment, decrement, and new object expressions can be used as a statement.
+variant switch
+{
+	SimpleAlgebraicDatatype.Variant1 variant1 =&gt; Console.Write(variant1.SomeValue),
+	SimpleAlgebraicDatatype.Variant2 variant2 =&gt; Console.Write(Convert.ToString(variant2.SomeValue)),
+	_ =&gt; throw new Exception(&quot;Unreachable&quot;),
+};
+
+// Error [CS0029]: Cannot implicitly convert type 'thorw-expression' to 'void'
+// Error [CS9209]: A value of type 'void' may not be assigned.
+_ = variant switch
+{
+	SimpleAlgebraicDatatype.Variant1 variant1 =&gt; Console.Write(variant1.SomeValue),
+	SimpleAlgebraicDatatype.Variant2 variant2 =&gt; Console.Write(Convert.ToString(variant2.SomeValue)),
+	_ =&gt; throw new Exception(&quot;Unreachable&quot;),
+};
+</code></pre>
+<p>One way to resolve this dilemma is to return a method that returns null from every arm, and execute it after:</p>
+<pre><code class="language-csharp">// very verbose and not very readable
+Func&lt;SimpleAlgebraicDatatype, object&gt; action = variant switch
+{
+	SimpleAlgebraicDatatype.Variant1 variant1 =&gt; _ =&gt;
+	{
+		Console.Write(Convert.ToString(variant1.SomeValue));
+		return null;
+	},
+	SimpleAlgebraicDatatype.Variant2 variant2 =&gt; _ =&gt;
+	{
+		Console.Write(Convert.ToString(variant2.SomeValue));
+		return null;
+	},
+	_ =&gt; _ =&gt; throw new Exception(&quot;Unreachable&quot;),
+};
+action(variant);
+</code></pre>
+<p>If we use <a href="./action-to-unit.html">ActionToUnit</a> once again, we can simplify this code, by a lot:</p>
+<pre><code class="language-csharp">_ = variant switch
+{
+	SimpleAlgebraicDatatype.Variant1 variant1 =&gt; ActionToUnit(() =&gt; Console.Write(variant1.SomeValue)),
+	SimpleAlgebraicDatatype.Variant2 variant2 =&gt; ActionToUnit(() =&gt; Console.Write(Convert.ToString(variant2.SomeValue))),
+};
+</code></pre>
+<p>If you cannot use the discard syntax (<code>_ =</code>), simply use <code>var _</code> or similar, and ignore the variable after.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../functional-helpers/identity.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../functional-helpers/action-to-unit.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../functional-helpers/identity.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../functional-helpers/action-to-unit.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
