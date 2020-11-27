@@ -786,10 +786,19 @@ result was an error. As a result (pun intended) of the fix, <code>ResultCombinat
 <li>Added overload to <code>Functional.Retry</code> with a <code>IRetryPolicy</code>.</li>
 <li>Added <code>None</code> overload that takes no predicate.</li>
 </ul>
-<h2><a class="header" href="#funcky-230-beta1" id="funcky-230-beta1">Funcky 2.3.0-beta.1</a></h2>
-<h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
+<h2><a class="header" href="#funcky-230" id="funcky-230">Funcky 2.3.0</a></h2>
 <ul>
-<li><code>ObjectExtensions.ToEnumerable</code> has been deprecated in favor of <code>Sequence.FromNullable</code>.</li>
+<li><code>net5.0</code> has been added to Funcky's target frameworks.</li>
+</ul>
+<h3><a class="header" href="#improvements-to-optiont" id="improvements-to-optiont">Improvements to <code>Option&lt;T&gt;</code></a></h3>
+<ul>
+<li><code>Option&lt;T&gt;</code> is now implicitly convertible from <code>T</code>.
+<pre><code class="language-csharp">public static Option&lt;int&gt; Answer =&gt; 42;
+</code></pre>
+</li>
+<li><code>Option</code> adds support for <code>System.Text.Json</code>:<br />
+The custom <code>JsonConverter</code> is picked up automatically when serializing/deserializing.
+<code>None</code> is serialized as <code>null</code> and <code>Some(value)</code> is serialized to whatever <code>value</code> serializes to.</li>
 </ul>
 <h3><a class="header" href="#factory-methods-for-ienumerablet" id="factory-methods-for-ienumerablet">Factory methods for <code>IEnumerable&lt;T&gt;</code></a></h3>
 <p>This release adds factory methods for creating <code>IEnumerable&lt;T&gt;</code>
@@ -797,6 +806,7 @@ with the static class <code>Sequence</code>:</p>
 <ul>
 <li><code>Sequence.Return</code>: Creates an <code>IEnumerable&lt;T&gt;</code> with exactly one item.</li>
 <li><code>Sequence.FromNullable</code>: Creates an <code>IEnumerable&lt;T&gt;</code> with zero or one items.</li>
+<li><code>Sequence.Generate</code>: Creates an <code>IEnumerable&lt;T&gt;</code> using a generation function and a seed.</li>
 </ul>
 <h3><a class="header" href="#more-extension-methods-for-ienumerablet" id="more-extension-methods-for-ienumerablet">More Extension Methods for <code>IEnumerable&lt;T&gt;</code></a></h3>
 <p>This release adds a bunch of new extension methods on <code>IEnumerable&lt;T&gt;</code>:</p>
@@ -843,10 +853,6 @@ suited especially for use with EF Core:</p>
 <li><code>LastOrNone</code></li>
 <li><code>SingleOrNone</code></li>
 </ul>
-<h3><a class="header" href="#serialization" id="serialization">Serialization</a></h3>
-<p><code>Option</code> adds support for <code>System.Text.Json</code>:<br />
-The custom <code>JsonConverter</code> is picked up automatically when serializing/deserializing.
-<code>None</code> is serialized as <code>null</code> and <code>Some(value)</code> is serialized to whatever <code>value</code> serializes to.</p>
 <h3><a class="header" href="#dependencies" id="dependencies">Dependencies</a></h3>
 <p>To support .NET Standard, Funcky conditionally pulls in dependencies
 that provide the missing functionality:</p>
@@ -859,6 +865,11 @@ that provide the missing functionality:</p>
 <li><code>ConfigureAwait(false)</code> is now used everywhere <code>await</code> is used.</li>
 <li>The <code>IRetryPolicy</code> implementations now use correct <code>Timespan</code> with <code>double</code> multiplication
 when targeting .NET Standard 2.0.</li>
+</ul>
+<h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
+<ul>
+<li><code>ObjectExtensions.ToEnumerable</code> has been deprecated in favor of <code>Sequence.FromNullable</code>.</li>
+<li><code>RequireClass</code> and <code>RequireStruct</code> have been obsoleted with no replacement.</li>
 </ul>
 
                     </main>
