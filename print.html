@@ -204,7 +204,7 @@
 <pre><code class="language-cs">int? integer = 1337;
 </code></pre>
 <p>You can access the Value directly via <code>i.Value</code>. The typical beginner question on the monad is therefore how to get to the value in a monad.</p>
-<p>The Option-Monad intentionally has no way to get to the value directly because that would an unsafe operation. The whole point of an optional is that it sometimes has no value. Instead you should inject the behaviour into the monad.</p>
+<p>The Option-Monad intentionally has no way to get to the value directly because that would be an unsafe operation. The whole point of an optional is that it sometimes has no value. Instead you should inject the behaviour into the monad.</p>
 <p>The basic Example:</p>
 <pre><code class="language-cs">int? integer = MaybeValue();
 
@@ -221,7 +221,7 @@ integer
 </code></pre>
 <p>Or in Linq syntax:</p>
 <pre><code class="language-cs">from integer in MaybeValue()
-select Console.WriteLine($&quot;Value: {integer .Value}&quot;);
+select Console.WriteLine($&quot;Value: {integer.Value}&quot;);
 </code></pre>
 <h1><a class="header" href="#the-tryverb-pattern" id="the-tryverb-pattern">The TryVerb-pattern</a></h1>
 <p>The TryVerb pattern is used in several instances in C# as an alternative for functions which throw an exception. </p>
