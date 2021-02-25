@@ -360,12 +360,55 @@ when targeting .NET Standard 2.0.</li>
 <li><code>ObjectExtensions.ToEnumerable</code> has been deprecated in favor of <code>Sequence.FromNullable</code>.</li>
 <li><code>RequireClass</code> and <code>RequireStruct</code> have been obsoleted with no replacement.</li>
 </ul>
-<h2><a class="header" href="#funcky-next" id="funcky-next">Funcky next</a></h2>
-<p>Added new generator functions:</p>
+<h2><a class="header" href="#funcky-240" id="funcky-240">Funcky 2.4.0</a></h2>
+<h3><a class="header" href="#try--ornone" id="try--ornone"><code>Try*</code> → <code>*OrNone</code></a></h3>
+<p>We've renamed all <code>Try*</code> methods, such as <code>TryParse</code>, <code>TryGet</code> value to <code>*OrNone</code>.
+The old methods are still available, but marked as obsolete and will be removed in 3.0.0.</p>
+<h3><a class="header" href="#factory-methods-for-ienumerablet-1" id="factory-methods-for-ienumerablet-1">Factory methods for <code>IEnumerable&lt;T&gt;</code></a></h3>
+<p>This release adds some new factory methods for creating <code>IEnumerable&lt;T&gt;</code>
+to the <code>Sequence</code> class:</p>
 <ul>
-<li>RepeatRange</li>
-<li>Cycle</li>
-<li>CycleRange</li>
+<li><code>Sequence.RepeatRange</code>: Generates a sequence that contains the same sequence of elements the given number of times</li>
+<li><code>Sequence.Cycle</code>: Cycles the same element over and over again as an endless generator.</li>
+<li><code>Sequence.CycleRange</code>: Generates a sequence that contains the same sequence of elements over and over again as an endless generator</li>
+<li><code>Sequence.Concat</code></li>
+</ul>
+<h3><a class="header" href="#more-extension-methods" id="more-extension-methods">More Extension Methods</a></h3>
+<h4><a class="header" href="#for-ienumerablet" id="for-ienumerablet">for <code>IEnumerable&lt;T&gt;</code></a></h4>
+<ul>
+<li><code>Materialize</code>: Materializes all the items of a lazy enumerable.</li>
+<li><code>PowerSet</code>: Returns a sequence with the set of all subsets</li>
+<li><code>Shuffle</code>: Returns the given sequence in random Order in O(n).</li>
+<li><code>Split</code>: Splits the source sequence a separator.</li>
+<li><code>ZipLongest</code>: Zips two sequences with different lengths.</li>
+</ul>
+<h4><a class="header" href="#for-string" id="for-string">for <code>string</code></a></h4>
+<ul>
+<li><code>SplitLazy</code>: Splits a string by separator lazily.</li>
+<li><code>SplitLines</code>: Splits a string by newline lazily.</li>
+</ul>
+<h4><a class="header" href="#for-func" id="for-func">for <code>Func</code></a></h4>
+<ul>
+<li><code>Curry</code></li>
+<li><code>Uncurry</code></li>
+<li><code>Flip</code></li>
+<li><code>Compose</code></li>
+</ul>
+<h3><a class="header" href="#eitherorboth" id="eitherorboth"><code>EitherOrBoth</code></a></h3>
+<p>EitherOrBoth is a new data type that can represent <code>Left</code>, <code>Right</code> and <code>Both</code>. It is used in <code>ZipLongest</code>.</p>
+<h3><a class="header" href="#monadreturn" id="monadreturn"><code>Monad.Return</code></a></h3>
+<p>This release adds a <code>Return</code> method for all monad types in Funcky:</p>
+<ul>
+<li><code>Option.Return</code></li>
+<li><code>Either&lt;TLeft&gt;.Return</code></li>
+<li><code>Result.Return</code></li>
+</ul>
+<h3><a class="header" href="#optionequalitycomparer" id="optionequalitycomparer"><code>OptionEqualityComparer</code></a></h3>
+<p>To support more advanced comparison scenarios, <code>OptionEqualityComparer</code> has been added similar to the already existing <code>OptionComparer</code>.</p>
+<h3><a class="header" href="#smaller-improvements" id="smaller-improvements">Smaller Improvements</a></h3>
+<ul>
+<li>Added a missing <code>Match</code> overload to <code>Either</code> that takes <code>Action</code>s</li>
+<li>Added additional overloads for <code>Functional.True</code> and <code>Functional.False</code> for up to four parameters.</li>
 </ul>
 
                     </main>
