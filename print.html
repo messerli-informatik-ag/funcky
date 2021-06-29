@@ -680,15 +680,43 @@ The extension methods follow the simple convention of being suffixed with <code>
 <h1><a class="header" href="#changelog" id="changelog">Changelog</a></h1>
 <p>All notable changes to this project will be documented in this file.
 Funcky adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
-<h2><a class="header" href="#unreleased" id="unreleased">Unreleased</a></h2>
+<h2><a class="header" href="#funcky-250" id="funcky-250">Funcky 2.5.0</a></h2>
 <ul>
 <li>Add the async equivalent of <code>Functional.NoOperation</code>: <code>Functional.NoOperationAsync</code></li>
 </ul>
-<h3><a class="header" href="#currying" id="currying">Currying</a></h3>
+<h3><a class="header" href="#reader-monad" id="reader-monad">Reader Monad</a></h3>
+<p>This release includes the <code>Reader</code> monad including a bunch of factory methods
+and convenience extensions.</p>
+<pre><code class="language-cs">public static Reader&lt;Enviroment, IEnumerable&lt;string&gt;&gt; DefaultLayout(IEnumerable&lt;DateTime&gt; month)
+    =&gt; from colorizedMonthName in ColorizedMonthName(month)
+       from weekDayLine in WeekDayLine()
+       from weeksInMonth in month
+        .GroupBy(GetWeekOfYear)
+        .Select(FormatWeek)
+        .Sequence()
+       select BuildDefaultLayout(colorizedMonthName, weekDayLine, weeksInMonth);
+</code></pre>
+<h3><a class="header" href="#improved-action-extensions" id="improved-action-extensions">Improved <code>Action</code> Extensions</a></h3>
+<p>Funcky now supports <code>Curry</code>, <code>Uncurry</code> and <code>Flip</code> for <code>Action</code>s too. <br />
+This release also adds the inversion of <code>ActionToUnit</code>: <code>UnitToAction</code></p>
+<h3><a class="header" href="#more-extensions-for-ienumerablet" id="more-extensions-for-ienumerablet">More Extensions for <code>IEnumerable&lt;T&gt;</code></a></h3>
 <ul>
-<li>Funcky provides currying also on <code>Action</code>s.</li>
-<li>Added Property tests for Currying</li>
+<li><code>Intersperse</code>: Adds a given item in between all items of an enumerable.</li>
+<li><code>JoinToString</code>: Alias for <code>string.Join</code>.</li>
+<li><code>WithPrevious</code>: Similar to <code>WithFirst/Last/Index</code> but with the predecessor of each item.</li>
+<li><code>ForEach</code>: Add an overload to <code>ForEach</code> that accepts a <code>Unit</code>-returning <code>Func</code>.</li>
 </ul>
+<h3><a class="header" href="#additional-factory-methods" id="additional-factory-methods">Additional Factory Methods</a></h3>
+<ul>
+<li><code>EitherOrBoth.FromOptions</code> creates an <code>EitherOrBoth</code> from two options.</li>
+<li><code>Lazy.FromFunc</code> creates a <code>Lazy&lt;T&gt;</code> from a <code>Func</code>. <br />
+This is sugar over the <code>Lazy&lt;T&gt;</code> constructor, with the additional benefit of supporting type inference.</li>
+<li><code>Lazy.Return</code> creates a <code>Lazy&lt;T&gt;</code> from a value. <br />
+This is sugar over the <code>Lazy&lt;T&gt;</code> constructor, with the additional benefit of supporting type inference.</li>
+</ul>
+<h3><a class="header" href="#documentation-improvements" id="documentation-improvements">Documentation Improvements</a></h3>
+<p>This release comes with a few small documentation improvements.
+Funcky users will now also see the <code>[Pure]</code> attributes which were previously not emitted.</p>
 <h2><a class="header" href="#funcky-241" id="funcky-241">Funcky 2.4.1</a></h2>
 <ul>
 <li>Remove upper bounds on all Microsoft.Bcl.* dependencies.
