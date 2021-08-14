@@ -36,7 +36,7 @@ namespace Funcky.Test.Monads
         {
             var value = default(Either<string, int>);
             Assert.Throws<NotSupportedException>(() =>
-                value.Match(Identity, i => i.ToString()));
+                value.Match(left: Identity, right: i => i.ToString()));
         }
 
         [Theory]
