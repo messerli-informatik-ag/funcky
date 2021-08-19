@@ -680,8 +680,11 @@ The extension methods follow the simple convention of being suffixed with <code>
 <h1><a class="header" href="#changelog" id="changelog">Changelog</a></h1>
 <p>All notable changes to this project will be documented in this file.
 Funcky adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
-<h2><a class="header" href="#unreleased" id="unreleased">unreleased</a></h2>
+<h2><a class="header" href="#unreleased" id="unreleased">Unreleased</a></h2>
 <ul>
+<li>The behaviour of the <code>Result.Error</code> constructor has been changed regarding exceptions
+with an already set stack trace. The original stack trace is now preserved.
+Previously this resulted in the stacktrace being replaced (.NET &lt; 5.0) or an error (.NET ≥ 5.0).</li>
 <li>Added extensions <code>DequeueOrNone</code> and <code>PeekOrNone</code> on <code>Queue</code> and <code>ConcurrentQueue</code></li>
 </ul>
 <h2><a class="header" href="#funcky-250" id="funcky-250">Funcky 2.5.0</a></h2>
