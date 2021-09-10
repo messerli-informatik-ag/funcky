@@ -170,11 +170,13 @@
 <p>Funcky offers a few additional ones which can come in handy.</p>
 <!-- toc -->
 <h2><a class="header" href="#adjacentgroupby" id="adjacentgroupby">AdjacentGroupBy</a></h2>
+<p><img src="adjacent-group-by.svg" alt="adjacent-group-by with marbles" /></p>
 <h2><a class="header" href="#averageornone" id="averageornone">AverageOrNone</a></h2>
 <h2><a class="header" href="#cartesianproduct" id="cartesianproduct">CartesianProduct</a></h2>
 <p>In mathematics, specifically set theory, the Cartesian product of two sets A and B, denoted A×B, is the set of all ordered pairs (a, b) where a is in A and b is in B.</p>
 <p>The CartesianProduct extension function returns all possible pairs of two given IEnumerables.</p>
 <p>There are two overloads, one which lets you choose</p>
+<p><img src="cartesian-product.svg" alt="cartesian-product with marbles" title="Marble me!" /></p>
 <h3><a class="header" href="#examples" id="examples">Examples</a></h3>
 <p>Two sequences as input:</p>
 <pre><code>smiles = [😀, 😐, 🙄]
@@ -196,6 +198,7 @@ var allCards = suits.CartesianProduct(values, (suit, value) =&gt; $&quot;{value}
 <h2><a class="header" href="#chunk" id="chunk">Chunk</a></h2>
 <p>With the <code>.Chunk(int)</code> extension method, you can turn an <code>IEnumerable&lt;T&gt;</code> into a <code>IEnumerable&lt;IEnumerable&lt;T&gt;&gt;</code>, with the inner Enumerables being of the given size.
 Empty and negative chunk sizes are not allowed and will throw a <code>ArgumentOutOfRangeException</code>.</p>
+<p><img src="chunk.svg" alt="chunk with marbles" /></p>
 <h3><a class="header" href="#examples-1" id="examples-1">Examples</a></h3>
 <pre><code class="language-csharp">var numbers = new List&lt;int&gt; { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 var chunked = numbers.Chunk(3);
@@ -284,7 +287,12 @@ This is also an important difference between <code>.ForEach</code> (eager) and <
 // 4
 </code></pre>
 <h2><a class="header" href="#interleave" id="interleave">Interleave</a></h2>
+<p><img src="interleave.svg" alt="interleave with marbles" /></p>
+<h2><a class="header" href="#intersperse" id="intersperse">Intersperse</a></h2>
+<p><img src="intersperse.svg" alt="intersperse with marbles" /></p>
+<h2><a class="header" href="#materialize" id="materialize">Materialize</a></h2>
 <h2><a class="header" href="#merge" id="merge">Merge</a></h2>
+<p><img src="merge.svg" alt="merge with marbles" /></p>
 <h3><a class="header" href="#examples-3" id="examples-3">Examples</a></h3>
 <p>Given two sequences which are already ordered the same way:</p>
 <pre><code>  sequence1 = [1, 2, 7, 9, 14]
@@ -309,6 +317,7 @@ This is also an important difference between <code>.ForEach</code> (eager) and <
 <pre><code class="language-csharp">if (enumerable.None(item =&gt; item.SomeNumericProperty == 2) { ... }
 </code></pre>
 <h2><a class="header" href="#pairwise" id="pairwise">PairWise</a></h2>
+<p><img src="pairwise.svg" alt="pairwise with marbles" /></p>
 <h3><a class="header" href="#example-1" id="example-1">Example</a></h3>
 <pre><code>animals = [ 🐵, 🐶, 🐺, 🐱, 🦄, 🐷, 🦁]
  
@@ -321,6 +330,7 @@ animals.PairWise() =&gt;
 	 [🐷, 🦁]]
 </code></pre>
 <h2><a class="header" href="#partition" id="partition">Partition</a></h2>
+<p><img src="partition.svg" alt="partition with marbles" /></p>
 <h3><a class="header" href="#example-2" id="example-2">Example</a></h3>
 <pre><code>plantBasedFood = [🍉, 🍩 , 🎂, 🍌, 🍫, 🍓, 🍒, 🥕, 🌽, 🥧 ]
 
@@ -328,12 +338,43 @@ plantBasedFood.Partition(IsProcessedFood?)
   =&gt; [[🍩 , 🎂, 🍫, 🥧],
       [🍉, 🍌, 🍓, 🍒, 🥕, 🌽]]
 </code></pre>
+<h2><a class="header" href="#powerset" id="powerset">PowerSet</a></h2>
+<p><img src="power-set.svg" alt="power-set with marbles" /></p>
+<h2><a class="header" href="#shuffle" id="shuffle">Shuffle</a></h2>
+<p><img src="shuffle.svg" alt="shuffle with marbles" /></p>
 <h2><a class="header" href="#slidingwindow" id="slidingwindow">SlidingWindow</a></h2>
-<h2><a class="header" href="#take-every" id="take-every">Take-Every</a></h2>
+<p><img src="sliding-window.svg" alt="sliding-window with marbles" /></p>
+<h2><a class="header" href="#split" id="split">Split</a></h2>
+<p><img src="split.svg" alt="split with marbles" /></p>
+<h2><a class="header" href="#takeevery" id="takeevery">TakeEvery</a></h2>
+<p><img src="take-every.svg" alt="take-every with marbles" /></p>
 <h2><a class="header" href="#transpose" id="transpose">Transpose</a></h2>
+<p><img src="transpose.svg" alt="transpose with marbles" /></p>
+<h2><a class="header" href="#wherenotnull" id="wherenotnull">WhereNotNull</a></h2>
+<p><img src="where-not-null.svg" alt="where-not-null with marbles" /></p>
+<h2><a class="header" href="#whereselect" id="whereselect">WhereSelect</a></h2>
+<p><img src="where-select.svg" alt="where-select with marbles" /></p>
 <h2><a class="header" href="#withfirst" id="withfirst">WithFirst</a></h2>
+<p><img src="with-first.svg" alt="with-first with marbles" /></p>
 <h2><a class="header" href="#withindex" id="withindex">WithIndex</a></h2>
+<p><img src="with-index.svg" alt="with-index with marbles" /></p>
 <h2><a class="header" href="#withlast" id="withlast">WithLast</a></h2>
+<p><img src="with-last.svg" alt="with-last with marbles" /></p>
+<h2><a class="header" href="#withprevious" id="withprevious">WithPrevious</a></h2>
+<p><img src="with-previous.svg" alt="with-previous with marbles" /></p>
+<h3><a class="header" href="#example-3" id="example-3">Example</a></h3>
+<pre><code>animals = [ 🦄, 🐺, 🐷, 🦁, 🐵, 🐶 ]
+ 
+animals.WithPrevious() =&gt;
+    [[∅, 🦄],
+	 [🦄, 🐺],
+	 [🐺, 🐷],
+	 [🐷, 🦁],
+	 [🦁, 🐵],
+	 [🐵, 🐶]]
+</code></pre>
+<h2><a class="header" href="#ziplongest" id="ziplongest">ZipLongest</a></h2>
+<p><img src="zip-longest.svg" alt="zip-longest with marbles" /></p>
 
                     </main>
 
