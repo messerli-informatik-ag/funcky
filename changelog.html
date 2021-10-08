@@ -176,6 +176,12 @@ Previously this resulted in the stacktrace being replaced (.NET &lt; 5.0) or an 
 <li>Added extensions <code>DequeueOrNone</code> and <code>PeekOrNone</code> on <code>Queue</code> and <code>ConcurrentQueue</code></li>
 <li><code>Sequence.Generate</code> has been deprecated in favour of the newly added <code>Sequence.Successors</code> function
 which includes the first element (seed) in the generated sequence.</li>
+<li>Add methods to convert from <code>Either</code> to <code>Option</code>: <a href="https://github.com/polyadic/funcky/issues/439">#439</a>
+<ul>
+<li><code>LeftOrNone</code>: Returns the left value or <code>None</code> if the either value was right.</li>
+<li><code>RightOrNone</code>: Returns the right value or <code>None</code> if the either value was left.</li>
+</ul>
+</li>
 </ul>
 <h2><a class="header" href="#funcky-250" id="funcky-250">Funcky 2.5.0</a></h2>
 <h3><a class="header" href="#reader-monad" id="reader-monad">Reader Monad</a></h3>
