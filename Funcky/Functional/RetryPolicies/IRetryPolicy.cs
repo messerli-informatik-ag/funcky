@@ -1,9 +1,8 @@
-namespace Funcky
-{
-    public interface IRetryPolicy
-    {
-        int MaxRetries { get; }
+namespace Funcky;
 
-        TimeSpan Duration(int onRetryCount);
-    }
+public interface IRetryPolicy
+{
+    int MaxRetries { get; }
+
+    TimeSpan Duration(int onRetryCount);
 }

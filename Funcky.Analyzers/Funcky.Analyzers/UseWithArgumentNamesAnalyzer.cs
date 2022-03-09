@@ -5,48 +5,47 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Operations;
 
-namespace Funcky.Analyzers
+namespace Funcky.Analyzers;
+
+[DiagnosticAnalyzer(LanguageNames.CSharp)]
+public sealed class UseWithArgumentNamesAnalyzer : DiagnosticAnalyzer
 {
-    [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseWithArgumentNamesAnalyzer : DiagnosticAnalyzer
+    public const string DiagnosticId = $"{DiagnosticName.Prefix}{DiagnosticName.Usage}03";
+    private const string Category = nameof(Funcky);
+
+    private const string AttributeFullName = "Funcky.CodeAnalysis.UseWithArgumentNamesAttribute";
+
+    private static readonly DiagnosticDescriptor Descriptor = new(
+        id: DiagnosticId,
+        title: Resources.UseWithArgumentNamesAnalyzerAnalyzerTitle,
+        messageFormat: Resources.UseWithArgumentNamesAnalyzerMessageFormat,
+        description: Resources.UseWithArgumentNamesAnalyzerDescription,
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true);
+
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor);
+
+    public override void Initialize(AnalysisContext context)
     {
-        public const string DiagnosticId = $"{DiagnosticName.Prefix}{DiagnosticName.Usage}03";
-        private const string Category = nameof(Funcky);
+        context.EnableConcurrentExecution();
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        context.RegisterSyntaxNodeAction(AnalyzeInvocation, SyntaxKind.InvocationExpression);
+    }
 
-        private const string AttributeFullName = "Funcky.CodeAnalysis.UseWithArgumentNamesAttribute";
+    private static void AnalyzeInvocation(SyntaxNodeAnalysisContext context)
+    {
+        var node = (InvocationExpressionSyntax)context.Node;
 
-        private static readonly DiagnosticDescriptor Descriptor = new(
-            id: DiagnosticId,
-            title: Resources.UseWithArgumentNamesAnalyzerAnalyzerTitle,
-            messageFormat: Resources.UseWithArgumentNamesAnalyzerMessageFormat,
-            description: Resources.UseWithArgumentNamesAnalyzerDescription,
-            category: Category,
-            defaultSeverity: DiagnosticSeverity.Warning,
-            isEnabledByDefault: true);
-
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor);
-
-        public override void Initialize(AnalysisContext context)
+        if (context.SemanticModel.GetOperation(node) is IInvocationOperation invocation &&
+            context.Compilation.GetTypeByMetadataName(AttributeFullName) is { } attributeSymbol &&
+            invocation.TargetMethod.GetAttributes().Any(attribute => SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)))
         {
-            context.EnableConcurrentExecution();
-            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-            context.RegisterSyntaxNodeAction(AnalyzeInvocation, SyntaxKind.InvocationExpression);
-        }
-
-        private static void AnalyzeInvocation(SyntaxNodeAnalysisContext context)
-        {
-            var node = (InvocationExpressionSyntax)context.Node;
-
-            if (context.SemanticModel.GetOperation(node) is IInvocationOperation invocation &&
-                context.Compilation.GetTypeByMetadataName(AttributeFullName) is { } attributeSymbol &&
-                invocation.TargetMethod.GetAttributes().Any(attribute => SymbolEqualityComparer.Default.Equals(attribute.AttributeClass, attributeSymbol)))
+            foreach (var argument in node.ArgumentList.Arguments)
             {
-                foreach (var argument in node.ArgumentList.Arguments)
+                if (argument.NameColon is null && context.SemanticModel.GetOperation(argument) is IArgumentOperation { Parameter: { } } argumentOperation)
                 {
-                    if (argument.NameColon is null && context.SemanticModel.GetOperation(argument) is IArgumentOperation { Parameter: { } } argumentOperation)
-                    {
-                        context.ReportDiagnostic(Diagnostic.Create(Descriptor, argument.GetLocation(), argumentOperation.Parameter.Name));
-                    }
+                    context.ReportDiagnostic(Diagnostic.Create(Descriptor, argument.GetLocation(), argumentOperation.Parameter.Name));
                 }
             }
         }

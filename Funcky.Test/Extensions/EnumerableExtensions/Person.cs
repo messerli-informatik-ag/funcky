@@ -1,19 +1,18 @@
-namespace Funcky.Test.Extensions.EnumerableExtensions
+namespace Funcky.Test.Extensions.EnumerableExtensions;
+
+internal sealed class Person : IComparable<Person>
 {
-    internal sealed class Person : IComparable<Person>
+    public Person(int age)
     {
-        public Person(int age)
-        {
-            Age = age;
-        }
+        Age = age;
+    }
 
-        public int Age { get; }
+    public int Age { get; }
 
-        public int CompareTo(Person? other)
-        {
-            return other != null
-                ? Age.CompareTo(other.Age)
-                : -1;
-        }
+    public int CompareTo(Person? other)
+    {
+        return other != null
+            ? Age.CompareTo(other.Age)
+            : -1;
     }
 }
