@@ -12,13 +12,8 @@ namespace Funcky.Monads
         private readonly bool _hasItem;
         private readonly TItem _item;
 
-        internal Option(TItem item)
+        internal Option(TItem item!!)
         {
-            if (item is null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
-
             _item = item;
             _hasItem = true;
         }
