@@ -65,6 +65,27 @@ namespace Funcky.Extensions
         }
 
         [Fact]
+        public Task GenerateMethodWithAttributeOnParameter()
+        {
+            const string source = @"using System.Diagnostics.Contracts;
+using Funcky.Internal;
+using Funcky.Monads;
+
+namespace Funcky.Extensions
+{
+    public static partial class ParseExtensions
+    {
+        [Pure]
+        [OrNoneFromTryPattern(typeof(Enum), nameof(Enum.TryParse))]
+        public static partial Option<TEnum> ParseEnumOrNone<TEnum>([System.Diagnostics.CodeAnalysis.NotNullWhen(false)] this string candidate)
+            where TEnum : struct;
+    }
+}";
+
+            return TestHelper.Verify(source);
+        }
+
+        [Fact]
         public Task GenerateMultipleMethodsInASingleClass()
         {
             const string source = @"using System.Diagnostics.Contracts;

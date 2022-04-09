@@ -21,7 +21,11 @@ public class OrNoneFromTryPatternRewriter : CSharpSyntaxRewriter
     }
 
     public override SyntaxNode VisitMethodDeclaration(MethodDeclarationSyntax methodDeclaration)
-        => WithImplementation(methodDeclaration.WithAttributeLists(default));
+        => WithoutAttributesOnParameters(WithImplementation(methodDeclaration.WithAttributeLists(default)));
+
+    private MethodDeclarationSyntax WithoutAttributesOnParameters(MethodDeclarationSyntax methodDeclaration)
+        => methodDeclaration
+            .WithParameterList(ParameterList(SeparatedList(methodDeclaration.ParameterList.Parameters.Select(p => p.WithAttributeLists(List<AttributeListSyntax>())))));
 
     private MethodDeclarationSyntax WithImplementation(MethodDeclarationSyntax methodDeclaration)
         => methodDeclaration
