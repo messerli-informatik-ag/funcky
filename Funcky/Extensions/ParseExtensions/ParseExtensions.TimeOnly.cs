@@ -1,4 +1,5 @@
 #pragma warning disable IDE0005 // Using directive is unnecessary.
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Funcky.Internal;
 
@@ -25,35 +26,35 @@ namespace Funcky.Extensions
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, string format);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] string format);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, string[] formats);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] string[] formats);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, string format, IFormatProvider provider, DateTimeStyles style);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] string format, IFormatProvider provider, DateTimeStyles style);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, string[] formats, IFormatProvider provider, DateTimeStyles style);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] string[] formats, IFormatProvider provider, DateTimeStyles style);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, ReadOnlySpan<char> format);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] ReadOnlySpan<char> format);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, string[] formats);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] string[] formats);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, ReadOnlySpan<char> format, IFormatProvider provider, DateTimeStyles style);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] ReadOnlySpan<char> format, IFormatProvider provider, DateTimeStyles style);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeOnly), nameof(TimeOnly.TryParseExact))]
-        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, string[] formats, IFormatProvider provider, DateTimeStyles style);
+        public static partial Option<TimeOnly> ParseExactTimeOnlyOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeOnlyFormat)] string[] formats, IFormatProvider provider, DateTimeStyles style);
 #endif
     }
 }

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Funcky.Internal;
 
 namespace Funcky.Extensions
@@ -16,12 +17,12 @@ namespace Funcky.Extensions
 
         [Pure]
         [OrNoneFromTryPattern(typeof(Guid), nameof(Guid.TryParseExact))]
-        public static partial Option<Guid> ParseExactGuidOrNone(this string? candidate, string? format);
+        public static partial Option<Guid> ParseExactGuidOrNone(this string? candidate, [StringSyntax(StringSyntaxAttribute.GuidFormat)] string? format);
 
 #if READ_ONLY_SPAN_SUPPORTED
         [Pure]
         [OrNoneFromTryPattern(typeof(Guid), nameof(Guid.TryParseExact))]
-        public static partial Option<Guid> ParseExactGuidOrNone(this ReadOnlySpan<char> candidate, ReadOnlySpan<char> format);
+        public static partial Option<Guid> ParseExactGuidOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.GuidFormat)] ReadOnlySpan<char> format);
 #endif
     }
 }

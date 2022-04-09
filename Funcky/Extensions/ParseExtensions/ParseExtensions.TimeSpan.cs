@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Funcky.Internal;
 
@@ -25,36 +26,36 @@ namespace Funcky.Extensions
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, string format, IFormatProvider formatProvider);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] string format, IFormatProvider formatProvider);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, string format, IFormatProvider formatProvider, TimeSpanStyles styles);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] string format, IFormatProvider formatProvider, TimeSpanStyles styles);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, string[] formats, IFormatProvider formatProvider);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] string[] formats, IFormatProvider formatProvider);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, string[] formats, IFormatProvider formatProvider, TimeSpanStyles styles);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this string candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] string[] formats, IFormatProvider formatProvider, TimeSpanStyles styles);
 
 #if READ_ONLY_SPAN_SUPPORTED
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, ReadOnlySpan<char> format, IFormatProvider formatProvider);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] ReadOnlySpan<char> format, IFormatProvider formatProvider);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, ReadOnlySpan<char> format, IFormatProvider formatProvider, TimeSpanStyles styles);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] ReadOnlySpan<char> format, IFormatProvider formatProvider, TimeSpanStyles styles);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, string[] formats, IFormatProvider formatProvider);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] string[] formats, IFormatProvider formatProvider);
 
         [Pure]
         [OrNoneFromTryPattern(typeof(TimeSpan), nameof(TimeSpan.TryParseExact))]
-        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, string[] formats, IFormatProvider formatProvider, TimeSpanStyles styles);
+        public static partial Option<TimeSpan> ParseExactTimeSpanOrNone(this ReadOnlySpan<char> candidate, [StringSyntax(StringSyntaxAttribute.TimeSpanFormat)] string[] formats, IFormatProvider formatProvider, TimeSpanStyles styles);
 #endif
     }
 }
