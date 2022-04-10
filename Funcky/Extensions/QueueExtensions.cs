@@ -48,5 +48,19 @@ namespace Funcky.Extensions
             => concurrentQueue.TryPeek(out var result)
                 ? result
                 : Option<TItem>.None();
+
+        #if PRIORITY_QUEUE_SUPPORTED
+        [Pure]
+        public static Option<(TElement Element, TPriority Priority)> DequeueOrNone<TElement, TPriority>(this PriorityQueue<TElement, TPriority> concurrentQueue)
+            => concurrentQueue.TryDequeue(out var result, out var priority)
+                ? (result, priority)
+                : Option<(TElement, TPriority)>.None();
+
+        [Pure]
+        public static Option<(TElement Element, TPriority Priority)> PeekOrNone<TElement, TPriority>(this PriorityQueue<TElement, TPriority> concurrentQueue)
+            => concurrentQueue.TryPeek(out var result, out var priority)
+                ? (result, priority)
+                : Option<(TElement, TPriority)>.None();
+        #endif
     }
 }

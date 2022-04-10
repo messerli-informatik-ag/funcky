@@ -171,6 +171,8 @@ static Funcky.Extensions.ParseExtensions.ParseVersionOrNone(this System.ReadOnly
 static Funcky.Extensions.ParseExtensions.ParseVersionOrNone(this string? candidate) -> Funcky.Monads.Option<System.Version!>
 static Funcky.Extensions.ParseExtensions.ParseViaHeaderValueOrNone(this string? candidate) -> Funcky.Monads.Option<System.Net.Http.Headers.ViaHeaderValue!>
 static Funcky.Extensions.ParseExtensions.ParseWarningHeaderValueOrNone(this string? candidate) -> Funcky.Monads.Option<System.Net.Http.Headers.WarningHeaderValue!>
+static Funcky.Extensions.QueueExtensions.DequeueOrNone<TElement, TPriority>(this System.Collections.Generic.PriorityQueue<TElement, TPriority>! concurrentQueue) -> Funcky.Monads.Option<(TElement Element, TPriority Priority)>
+static Funcky.Extensions.QueueExtensions.PeekOrNone<TElement, TPriority>(this System.Collections.Generic.PriorityQueue<TElement, TPriority>! concurrentQueue) -> Funcky.Monads.Option<(TElement Element, TPriority Priority)>
 static Funcky.Monads.Either<TLeft, TRight>.implicit operator Funcky.Monads.Either<TLeft, TRight>(TRight right) -> Funcky.Monads.Either<TLeft, TRight>
 static Funcky.Monads.OptionExtensions.ToEither<TLeft, TRight>(this Funcky.Monads.Option<TRight> option, System.Func<TLeft>! getLeft) -> Funcky.Monads.Either<TLeft, TRight>
 static Funcky.Monads.OptionExtensions.ToEither<TLeft, TRight>(this Funcky.Monads.Option<TRight> option, TLeft left) -> Funcky.Monads.Either<TLeft, TRight>
