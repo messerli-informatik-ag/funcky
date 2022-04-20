@@ -168,21 +168,53 @@
                         <h1><a class="header" href="#changelog" id="changelog">Changelog</a></h1>
 <p>All notable changes to this project will be documented in this file.
 Funcky adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
-<h2><a class="header" href="#unreleased" id="unreleased">Unreleased</a></h2>
+<h2><a class="header" href="#funcky-270--funckyxunit-100--funckyanalyzers-110" id="funcky-270--funckyxunit-100--funckyanalyzers-110">Funcky 2.7.0 | Funcky.XUnit 1.0.0 | Funcky.Analyzers 1.1.0</a></h2>
+<p>This release is the last non-breaking release for Funcky before 3.0.</p>
+<h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
 <ul>
-<li>Add <code>ParseVersionOrNone</code> extension.</li>
-<li>Implement <code>Inspect</code> for <code>Either</code> and <code>Result</code>.</li>
-<li>Use Source Generator to emit more <code>*OrNone</code> functions.</li>
-<li>Cartesian Product deprecated.</li>
-<li>Add implicit converions for <code>Either</code> and <code>Result</code>.</li>
+<li><code>EnumerableExtensions.CartesianProduct</code> will be removed in Funcky 3.</li>
+<li>To align our naming with that of the BCL, the <code>ParseOrNone</code> methods
+that return a type that has a keyword in C# <code>int</code>, <code>long</code>, etc. use the name of the BCL type instead. <br />
+Example: <code>ParseIntOrNone</code> becomes <code>ParseInt32OrNone</code>. <br />
+The old methods will be removed in Funcky 3.</li>
+<li>In preparation for Funcky 3 we deprecated <code>Option&lt;T&gt;.None</code> when used as method group. Use <code>Option.None&lt;T&gt;</code> instead.</li>
 </ul>
+<h3><a class="header" href="#new-parseornone-extensions" id="new-parseornone-extensions">New <code>ParseOrNone</code> extensions</a></h3>
+<p>With the help of a source generator we have added a lot of new ParseOrNone methods for various types from the BCL:</p>
+<ul>
+<li>Unsigned integer types</li>
+<li><code>DateOnly</code>, <code>TimeOnly</code></li>
+<li><code>Version</code></li>
+<li>Support for <code>ReadOnlySpan&lt;T&gt;</code> as input</li>
+<li>... and more</li>
+</ul>
+<h3><a class="header" href="#convenience-for-either-and-result" id="convenience-for-either-and-result">Convenience for <code>Either</code> and <code>Result</code></a></h3>
+<ul>
+<li>Added implicit conversions for <code>Either</code> and <code>Result</code>.</li>
+<li>Implement <code>Inspect</code> for <code>Either</code> and <code>Result</code>.</li>
+<li>Added <code>Partition</code> for <code>IEnumerable&lt;Either&gt;</code> and <code>IEnumerable&lt;Result&gt;</code>.</li>
+<li>Added <code>ToString</code> on <code>Either</code> and <code>Result</code>.</li>
+<li>Implement <code>ToEither</code> on <code>Option</code>.</li>
+</ul>
+<h3><a class="header" href="#ienumerablet-extensions" id="ienumerablet-extensions"><code>IEnumerable&lt;T&gt;</code> extensions</a></h3>
+<ul>
+<li><code>AnyOrElse</code></li>
+<li>Prefix sum: <code>InclusiveScan</code> and <code>ExclusiveScan</code></li>
+</ul>
+<h3><a class="header" href="#analyzers" id="analyzers">Analyzers</a></h3>
+<p>This release adds two new analyzer rules:</p>
+<ul>
+<li>λ1003: Warning when certain methods, such as <code>Match</code> are used without argument labels</li>
+<li>λ1004: Warning that suggests <code>.ConcatToString()</code> over <code>.JoinToString(&quot;&quot;)</code></li>
+</ul>
+<p>Both of these warnings come with corresponding code fixes.</p>
 <h3><a class="header" href="#funckyxunit" id="funckyxunit">Funcky.Xunit</a></h3>
 <ul>
 <li>Breaking: Funcky.Xunit now uses the <code>Funcky</code> namespace, instead of <code>Funcky.Xunit</code>.</li>
 <li>Add assertion methods for testing <code>Either</code>: <code>FunctionalAssert.IsLeft</code> and <code>FunctionalAssert.IsRight</code>.</li>
 </ul>
 <h2><a class="header" href="#funcky-260--funckyanalyzers-100" id="funcky-260--funckyanalyzers-100">Funcky 2.6.0 | Funcky.Analyzers 1.0.0</a></h2>
-<h3><a class="header" href="#analyzers" id="analyzers">Analyzers</a></h3>
+<h3><a class="header" href="#analyzers-1" id="analyzers-1">Analyzers</a></h3>
 <p>This release comes with a new package <code>Funcky.Analyzers</code>, which we'll use
 to guide users of Funcky</p>
 <h3><a class="header" href="#new-extensions" id="new-extensions">New extensions</a></h3>
@@ -406,7 +438,7 @@ that provide the missing functionality:</p>
 <li>The <code>IRetryPolicy</code> implementations now use correct <code>Timespan</code> with <code>double</code> multiplication
 when targeting .NET Standard 2.0.</li>
 </ul>
-<h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
+<h3><a class="header" href="#deprecations-1" id="deprecations-1">Deprecations</a></h3>
 <ul>
 <li><code>ObjectExtensions.ToEnumerable</code> has been deprecated in favor of <code>Sequence.FromNullable</code>.</li>
 <li><code>RequireClass</code> and <code>RequireStruct</code> have been obsoleted with no replacement.</li>
